@@ -7,12 +7,12 @@
 # Default-Stop:
 # Short-Description: Launches the Handheld Rainbow jar
 ### END INIT INFO
-SERVICE_NAME=Ceeya
+SERVICE_NAME=handheld-rainbow
 PATH_TO_JAR=/usr/local/bin/HandheldRainbow.jar
 PID_PATH_NAME=/tmp/HandheldRainbow-pid
 timestamp=`date +%F.%H.%M.%S`
 monitorName=HandheldRainbow.$timestamp
-LAUNCH_COMMAND="java -jar $PATH_TO_JAR start dev > /home/spooky/monitors/$monitorName 2>&1"
+LAUNCH_COMMAND="java -jar $PATH_TO_JAR start dev > /home/pi/monitors/$monitorName 2>&1"
 
 . /lib/lsb/init-functions
 
