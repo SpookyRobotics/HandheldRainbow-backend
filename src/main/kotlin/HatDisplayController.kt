@@ -21,10 +21,9 @@ class HatDisplayController(val serverId: ServerId) : Runnable, RainbowHatInterfa
             synchronized(this) {
                 if (nextDisplay != currentDisplay) {
                     nextDisplay.execute()
-                } else {
-                    currentDisplay.execute()
+                    currentDisplay = nextDisplay
+
                 }
-                currentDisplay = nextDisplay
                 Thread.sleep(UPDATE_DISPLAY_REFRESH_SLEEP)
             }
         }
