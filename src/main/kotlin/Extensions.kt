@@ -58,7 +58,8 @@ fun executeInThread(toRun: () -> Unit) {
 fun String.runWithArguments(workingDir: File? = null): String? {
     try {
         val parts = this.split("\\s".toRegex())
-        val processBuilder = ProcessBuilder(*parts.toTypedArray())
+        val commandList = parts.toTypedArray().filter { !it.isBlank() }
+        val processBuilder = ProcessBuilder(commandList)
         workingDir?.let { processBuilder.directory(it) }
         val proc = processBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE)
                 .redirectError(ProcessBuilder.Redirect.PIPE)
