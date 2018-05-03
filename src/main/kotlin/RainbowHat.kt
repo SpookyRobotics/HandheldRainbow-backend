@@ -21,4 +21,12 @@ object RainbowHat : RainbowHatInterface {
         executeInThread { "python /home/pi/RainbowHatInterface/bouncingBall.py".runWithArguments() }
     }
 
+    fun setDisplay(argbValues: List<Long>) {
+        val shellArguments = argbValues.toString()
+                .replace("[", "")
+                .replace("]", "")
+                .replace(",", " ")
+        executeInThread { "python /home/pi/RainbowHatInterface/displayValues.py $shellArguments".runWithArguments() }
+    }
+
 }
