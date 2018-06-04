@@ -1,4 +1,4 @@
-package com.handheldrainbow.hatControls
+package com.handheldrainbow.hatControls.tcpInterface
 
 import com.handheldrainbow.ServerId
 import com.handheldrainbow.tcpServer.ContextHandler
@@ -20,14 +20,7 @@ class RainbowHatHandler(val id: ServerId) : ContextHandler() {
             val functionHeader = httpExchange.requestHeaders.get(HEADER_FUNCTION)
             functionHeader?.let {
                 val function = it.first()
-                RainbowHatFunctions.values()
-                        .firstOrNull { it.name.equals(function) }
-                        ?.let {
-                            it.execute()
-                            sendOk(httpExchange, buildJsonResponse(function))
-                            return@HttpHandler
-                        }
-
+                // TODO invoke appropiate function
             }
             sendInvalid(httpExchange)
         }

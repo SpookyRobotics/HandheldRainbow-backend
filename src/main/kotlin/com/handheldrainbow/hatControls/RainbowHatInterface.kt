@@ -7,4 +7,5 @@ interface RainbowHatInterface {
     fun showLeftIdle()
     fun showRightIdle()
     fun showBallBouncingBothWalls()
+    fun setDisplay(diodeValues: List<Long>)
 }

@@ -1,19 +1,17 @@
-import com.handheldrainbow.hatControls.RainbowHatInterface
 import com.handheldrainbow.ServerId
+import com.handheldrainbow.hatControls.HatDisplayController
+import com.handheldrainbow.motorControls.MotorController
 import com.handheldrainbow.tcpServer.TopLevelServer
 import java.io.File
 
 fun main(args: Array<String>) {
     val hatServiceStartupWait: Long = 8000
-    val hatInterface : RainbowHatInterface = RainbowHat
     val port : Int = 4789
     val serverId = getServerId()
     val hatDisplayController : HatDisplayController = HatDisplayController(serverId)
-    val server: TopLevelServer = TopLevelServer(port, serverId, hatDisplayController)
+    val motorController = MotorController()
+    val server: TopLevelServer = TopLevelServer(port, serverId, hatDisplayController, motorController)
     server.start()
-    Thread.sleep(hatServiceStartupWait)
-
-    Thread(hatDisplayController).start()
 }
 
 

@@ -1,10 +1,12 @@
-package com.handheldrainbow.hatControls
+package com.handheldrainbow.hatControls.tcpInterface
 
 import com.handheldrainbow.ServerId
+import com.handheldrainbow.hatControls.RainbowHatInterface
 import com.handheldrainbow.tcpServer.ContextHandler
 import com.sun.net.httpserver.HttpHandler
 
-class DisplayFrameHandler(val id: ServerId) : ContextHandler() {
+class DisplayFrameHandler(val id: ServerId,
+                          val rainbowHatInterface: RainbowHatInterface) : ContextHandler() {
     override fun getContext(): String {
         return "/displayFrame"
     }
@@ -25,7 +27,7 @@ class DisplayFrameHandler(val id: ServerId) : ContextHandler() {
             sendOk(httpExchange)
             val diodeValues = functionHeader[0].split(",")
                     .map { it.toLong() }
-            RainbowHat.setDisplay(diodeValues)
+            rainbowHatInterface.setDisplay(diodeValues)
         }
     }
 
