@@ -8,3 +8,4 @@ mkdir /home/pi/MotorInterface
 cp linux-service/*.py /home/pi/RainbowHatInterface/
 cp motor-interface/*.sh /home/pi/MotorInterface
 echo "LEFT" > /home/pi/.HANDHELD_RAINBOW_INIT
+echo "/home/pi/MotorInterface/exportGpio.sh" >> /home/pi/.bashrc
