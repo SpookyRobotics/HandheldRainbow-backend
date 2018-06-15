@@ -1,0 +1,45 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          Tower Interface Service
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Exports pins for tower control
+### END INIT INFO
+SERVICE_NAME=wheeled-motor-control
+PATH_TO_EXPORT_SCRIPT=/usr/local/bin/wheeledPlatform/TowerInterface.sh
+PID_PATH_NAME=/tmp/TowerInterface-pid
+LAUNCH_COMMAND="sh $PATH_TO_EXPORT"
+
+. /lib/lsb/init-functions
+
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PID_PATH_NAME ]; then
+            $LAUNCH_COMMAND &
+            echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is already running ..."
+        fi
+    ;;
+    stop)
+        if [ -f $PID_PATH_NAME ]; then
+            echo "$SERVICE_NAME can not be stopped. Must reboot and not export the pin"
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    restart)
+        if [ -f $PID_PATH_NAME ]; then
+            echo "$SERVICE_NAME can not be stopped or restarted"
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    status)
+    	status_of_proc -p $PID_PATH_NAME $PATH_TO_JAR $SERVICE_NAME && exit 0 || exit $?
+    ;;
+esac 
