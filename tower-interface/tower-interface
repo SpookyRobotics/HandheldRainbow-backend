@@ -10,7 +10,7 @@
 SERVICE_NAME=wheeled-motor-control
 PATH_TO_EXPORT_SCRIPT=/usr/local/bin/wheeledPlatform/TowerInterface.sh
 PID_PATH_NAME=/tmp/TowerInterface-pid
-LAUNCH_COMMAND="sh $PATH_TO_EXPORT"
+LAUNCH_COMMAND="sh /usr/local/bin/wheeledPlatform/TowerInterface.sh"
 
 . /lib/lsb/init-functions
 
