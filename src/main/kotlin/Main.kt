@@ -2,6 +2,7 @@ import com.handheldrainbow.ServerId
 import com.handheldrainbow.hatControls.HatDisplayController
 import com.handheldrainbow.motorControls.MotorController
 import com.handheldrainbow.tcpServer.TopLevelServer
+import com.handheldrainbow.towerControls.TowerController
 import java.io.File
 
 fun main(args: Array<String>) {
@@ -10,7 +11,8 @@ fun main(args: Array<String>) {
     val serverId = getServerId()
     val hatDisplayController : HatDisplayController = HatDisplayController(serverId)
     val motorController = MotorController()
-    val server: TopLevelServer = TopLevelServer(port, serverId, hatDisplayController, motorController)
+    val towerController = TowerController()
+    val server: TopLevelServer = TopLevelServer(port, serverId, hatDisplayController, motorController, towerController)
     server.start()
 }
 
