@@ -28,16 +28,16 @@ class TowerHandler(val id: ServerId,
             val isSpinA = functionToExecute == TowerFunctions.SPIN_A.name.toLowerCase()
             val isSpinB = functionToExecute == TowerFunctions.SPIN_B.name.toLowerCase()
             val isStop = functionToExecute == TowerFunctions.STOP.name.toLowerCase()
-            val millisecondsArgument : Long
+            val millisecondsArgument : Float
             if (isSpinB || isSpinA) {
                 val millisecondsHeader = httpExchange.requestHeaders.get(HEADER_MILLISECONDS)
                 if (millisecondsHeader == null || millisecondsHeader.isEmpty()) {
                     sendInvalid(httpExchange)
                     return@HttpHandler
                 }
-                millisecondsArgument = millisecondsHeader.first()!!.toLong()
+                millisecondsArgument = millisecondsHeader.first()!!.toFloat()
             } else {
-                millisecondsArgument = 0
+                millisecondsArgument = 0f
             }
             if (!(isSpinA || isSpinB || isStop)) {
                 sendInvalid(httpExchange)

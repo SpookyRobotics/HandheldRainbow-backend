@@ -4,18 +4,18 @@ import executeInThread
 import runWithArguments
 
 class TowerController : TowerInterface {
-    override fun spinA(milliseconds: Long) = Tower.spinA(milliseconds)
+    override fun spinA(milliseconds: Float) = Tower.spinA(milliseconds)
 
-    override fun spinB(milliseconds: Long) = Tower.spinB(milliseconds)
+    override fun spinB(milliseconds: Float) = Tower.spinB(milliseconds)
     override fun stop() = Tower.stop()
 }
 
 private object Tower : TowerInterface {
-    override fun spinA(milliseconds: Long) {
+    override fun spinA(milliseconds: Float) {
         executeInThread { "sh /home/pi/TowerInterface/spinA.sh $milliseconds".runWithArguments() }
     }
 
-    override fun spinB(milliseconds: Long) {
+    override fun spinB(milliseconds: Float) {
         executeInThread { "sh /home/pi/TowerInterface/spinB.sh $milliseconds".runWithArguments() }
     }
 
