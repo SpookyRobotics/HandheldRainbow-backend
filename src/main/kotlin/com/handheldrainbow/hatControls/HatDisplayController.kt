@@ -59,7 +59,7 @@ class HatDisplayController(val serverId: ServerId) : Runnable, RainbowHatInterfa
     }
 }
 
-private object RainbowHat : RainbowHatInterface {
+object RainbowHat : RainbowHatInterface {
     override fun setBrightness(value: Int) {
         executeInThread { "python /home/pi/RainbowHatInterface/setBrightness.py $value".runWithArguments() }
     }
